@@ -1,0 +1,25 @@
+{
+    "images": [
+        {}
+    ],
+    "accounts":[
+        {
+            "person1": {
+                "name":"",
+                "passcode": "",
+                "pantry_items":[
+                    {
+                        "category1":[]
+                    }
+                ]
+            }
+        }
+    ],
+    "shop yetu":[
+        {
+            "product_name": "",
+            "price": "",
+            "id": ""
+        }
+    ]
+}
