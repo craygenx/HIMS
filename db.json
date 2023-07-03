@@ -2,10 +2,10 @@
     "images": [
         {}
     ],
-    "accounts":[
+    "accounts":
         {
             "person1": {
-                "name":"",
+                "username":"",
                 "passcode": "",
                 "pantry_items":[
                     {
@@ -13,9 +13,8 @@
                     }
                 ]
             }
-        }
-    ],
-    "shop yetu":[
+        },
+    "shop_yetu":[
         {
             "product_name": "",
             "price": "",
