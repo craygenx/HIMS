@@ -18,30 +18,37 @@ function regFormTabControl(e){
 }
 form.addEventListener('submit', (e)=>{
     e.preventDefault();
-    const username = document.getElementById('username');
-    const password = document.getElementById('password');
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-    if(form.className = 'LOGIN'){
-        fetch('')
+    if(form.className === 'LOGIN'){
+        fetch('http://localhost:3000/accounts')
         .then(res => res.json())
         .then(data => {
-            if(data.hasOwnProperty(username)){
-                if(username === data.username && password === data.password){
-                    return null;
+            const account = data.find(obj => obj.hasOwnProperty(username));
+            if(account){
+                if(password === account[username].password){
+                    alertMessage(`Hello ${username}, logIn succeful!`, 'green');
+                    form.reset();
+                }else{
+                    alertMessage(`Error: Incorrect password please try again`, 'red');
+                    form.reset();
                 }
             }else{
-                const msg = `Error: User ${username} not Found!`
-                setTimeout(alertMessage(msg), 2000);
+                const msg = `Error: User ${username} not Found!`;
+                alertMessage(msg, 'red');
+                form.reset();
             }
-        }).catch(err => alertMessage(`Error ${err}: ${err.message}`));
+        }).catch(err => alertMessage(`${err}: ${err.message}`, 'red'));
     } else if(form.className === 'SIGNUP') {
         const postData =  {
-            
-            username: username,
-            password: password,
-            pantry_items: []
+            [username] : {
+                username: username,
+                password: password,
+                pantry_items : []
+            }
         }
-        fetch('',{
+        fetch('http://localhost:3000/accounts',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,11 +56,16 @@ form.addEventListener('submit', (e)=>{
             },
             body: JSON.stringify(postData)
         })
-        .then()
+        .then(() => alertMessage(`user ${username} added succesfully!`, 'green'))
+        .catch(err => alertMessage(`Error ${err}: ${err.message}`, 'red'));
     }
 });
-function alertMessage(message){
+function alertMessage(message, color){
     const alertModal = document.getElementById('alertmsg');
     alertModal.textContent = message;
     alertModal.style.display = 'flex';
+    alertModal.style.backgroundColor = color;
+    setTimeout(()=>{
+        alertModal.style.display = 'none';
+    }, 3000)
 }

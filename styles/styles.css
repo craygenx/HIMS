@@ -13,6 +13,7 @@ body{
     height: 95vh;
 }
 .accountSetupModal{
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,4 +86,12 @@ background-color: whitesmoke;
     width: 20%;
     margin-top: 20px;
     border-radius: 20px;
+}
+.Homepage{
+    background-color: rgba(0, 0, 0, 0.5); /* Set a semi-transparent background color */
+    opacity: 0.2; /* Adjust the opacity value as desired */
+    backdrop-filter: blur(8px); /* Apply a blur effect */
+    -webkit-backdrop-filter: blur(8px); /* For Safari support */
+    width: 100%;
+    height: 100%;
 }
