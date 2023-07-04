@@ -1,5 +1,5 @@
-:root {    /* Replace with your primary color value */
-    --secondary-color: #e9f358;  /* Replace with your secondary color value */
+:root {    /*setting the primary color*/
+    --secondary-color: #e9f358;
 }
 body{
     margin: 0;
@@ -88,10 +88,41 @@ background-color: whitesmoke;
     border-radius: 20px;
 }
 .Homepage{
-    background-color: rgba(0, 0, 0, 0.5); /* Set a semi-transparent background color */
-    opacity: 0.2; /* Adjust the opacity value as desired */
-    backdrop-filter: blur(8px); /* Apply a blur effect */
-    -webkit-backdrop-filter: blur(8px); /* For Safari support */
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0.2;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     width: 100%;
     height: 100%;
+}
+.navBar{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: space-between;
+    width: 98%;
+    height: 50px;
+    background-color: blanchedalmond;
+}
+.accNotifications{
+    display: flex;
+    width: 20%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+.circCont{
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    background-color: #e9f358;
+}
+.accounts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

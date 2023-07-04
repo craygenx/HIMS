@@ -1,30 +1,38 @@
 {
-    "images": [
+  "images": [
     {}
-    ],
-    "accounts": [
+  ],
+  "accounts": [
     {
-        "craygenx": {
+      "craygenx": {
         "username": "craygenx",
         "password": "1234567890",
         "pantry_items": []
-        },
-        "id": 1
+      },
+      "id": 1
     },
     {
-        "cenchi": {
+      "cenchi": {
         "username": "cenchi",
         "password": "1234567890",
         "pantry_items": []
-        },
-        "id": 2
-    }
-    ],
-    "shop_yetu": [
+      },
+      "id": 2
+    },
     {
-        "product_name": "",
-        "price": "",
-        "id": ""
+      "dennis": {
+        "username": "dennis",
+        "password": "1234567890",
+        "pantry_items": []
+      },
+      "id": 3
     }
-    ]
+  ],
+  "shop_yetu": [
+    {
+      "product_name": "",
+      "price": "",
+      "id": ""
+    }
+  ]
 }

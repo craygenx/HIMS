@@ -1,6 +1,7 @@
 const form = document.getElementById('accountForm');
 
 document.addEventListener('DOMContentLoaded', ()=>{});
+//control the registration form tabs login/signup
 function regFormTabControl(e){
     const submit = document.getElementById('regSubmit');
     const tab = e.target;
@@ -16,6 +17,7 @@ function regFormTabControl(e){
     }
     submit.textContent = tab.id;
 }
+//on submit switch between login and signup
 form.addEventListener('submit', (e)=>{
     e.preventDefault();
     const username = document.getElementById('username').value;
@@ -28,7 +30,12 @@ form.addEventListener('submit', (e)=>{
             const account = data.find(obj => obj.hasOwnProperty(username));
             if(account){
                 if(password === account[username].password){
+                    const homepage = document.getElementById('homepage');
+                    const accModal = document.getElementById('accModal');
                     alertMessage(`Hello ${username}, logIn succeful!`, 'green');
+                    homepage.style.opacity = '1';
+                    homepage.style.backgroundColor = '#ffffff';
+                    accModal.style.display = 'none';
                     form.reset();
                 }else{
                     alertMessage(`Error: Incorrect password please try again`, 'red');
@@ -56,10 +63,16 @@ form.addEventListener('submit', (e)=>{
             },
             body: JSON.stringify(postData)
         })
-        .then(() => alertMessage(`user ${username} added succesfully!`, 'green'))
+        .then(() => {
+            alertMessage(`user ${username} added succesfully!`, 'green');
+            homepage.style.opacity = '1';
+            homepage.style.backgroundColor = '#ffffff';
+            accModal.style.display = 'none';
+        })
         .catch(err => alertMessage(`Error ${err}: ${err.message}`, 'red'));
     }
 });
+//custome alert for different messages
 function alertMessage(message, color){
     const alertModal = document.getElementById('alertmsg');
     alertModal.textContent = message;
