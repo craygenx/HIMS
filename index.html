@@ -53,7 +53,7 @@
                             <div>View the pantry</div>
                             <div class="avlItems"><span id="availableCount">12</span>items available</div>
                         </div>
-                        <div class="circCont">
+                        <div class="circCont" onclick="openInventoryBoard()">
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </div>
                     </div>
@@ -87,7 +87,51 @@
                 <button type="submit" class="roundedButton" id="regSubmit">LOGIN</button>
             </form>
         </div>
-        <div class="inventoryBoard"></div>
+        <div class="inventoryBoard" id="inventoryBoard">
+            <div class="shelves">
+                <div class="topShelf">
+                    <div style="font-size: 1.3rem;">My pantry</div>
+                    <select id="dropdown" style="width: fit-content;">
+                    </select>
+                </div>
+                <div class="shelvesData"></div>
+            </div>
+            <div class="shelfItemDets">
+                <div class="circCont" id="closeInventory" onclick="closeInventory()">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <div class="shelfItemImageDets"></div>
+                <div class="invForm">
+                    <form action="" id="ineventory">
+                        <div class="input-container">
+                            <input type="text" id="itemName" />
+                            <label for="itemName">Item name</label>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" id="itemQuantity" />
+                            <label for="itemQuantity">Item Quantity</label>
+                        </div>
+                        <div class="thresholdCont">
+                            <div class="threshCountCont">
+                                <div class="addbutton">
+                                    <i class="fa-solid fa-plus"></i>
+                                </div>
+                                <input type="text" id="threshCount" placeholder="0">
+                                <div class="subbutton">
+                                    <i class="fa-solid fa-minus"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="invButtons">
+                            <button type="submit" class="addItemBtn">+ Add Item</button>
+                            <div class="circCont">
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="alertmsg" id="alertmsg"></div>
     </div>
     <script src="./js/main.js"></script>

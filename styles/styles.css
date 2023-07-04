@@ -247,9 +247,115 @@ span {
     white-space: nowrap;
 }
 .inventoryBoard{
+    display: none;
+    justify-content: space-between;
     margin-top: 50px;
     position: absolute;
     width: 60%;
     height: 100%;
-    background-color: paleturquoise;
 }
+.shelves{
+    width: 65%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: aliceblue;
+}
+.shelfItemDets{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 33%;
+    height: 100%;
+    background-color: whitesmoke;
+}
+.shelfItemImageDets{
+    width: 80%;
+    height: 25%;
+    background-color: yellowgreen;
+}
+.addItemBtn{
+    background-color: black;
+    color: white;
+    padding: 4px;
+    width: 120px;
+    height: 35px;
+}
+.invButtons{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+.invForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+}
+.thresholdCont{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 50px;
+}
+.addbutton, .subbutton {
+    border-radius: 50%;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    background-color: #e9f358;
+}
+#threshCount{
+    background: transparent;
+    text-align: center;
+    border: none;
+    width: 30px;
+    height: 20px;
+}
+#threshCount :focus{
+    outline: none;
+    border: none;
+}
+#threshCount::placeholder{
+    text-align: center;
+}
+.threshCountCont{
+    position: absolute;
+    right: -20px;
+    top: 20%;
+    display: flex;
+    align-items: center;
+}
+.topShelf{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    height: 40px;
+    background-color: beige;
+}
+.shelvesData{
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    background-color: bisque;
+}
+#closeInventory{
+    position: absolute;
+    right: 10px;
+    top: 8px;
+}
+
