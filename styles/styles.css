@@ -167,7 +167,7 @@ span {
     line-height: normal;
 }
 .quotationCount{
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 .pantryTitle{
     font-size: 18px;
@@ -180,7 +180,8 @@ span {
 .pantryPreview{
     margin-top: 20px;
     margin-left: 40px;
-    height: 50%;
+    margin-bottom: 20px;
+    height: 60%;
     width: 90%;
     background-color: antiquewhite;
 }
@@ -244,4 +245,11 @@ span {
     grid-gap: 10px;
     padding: 10px;
     white-space: nowrap;
+}
+.inventoryBoard{
+    margin-top: 50px;
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    background-color: paleturquoise;
 }

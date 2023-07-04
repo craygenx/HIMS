@@ -1,6 +1,35 @@
 {
   "images": [
-    {}
+    {
+        "kale":"./assets/kale.jpg"
+    },
+    {
+        "beans":"./assets/beans.jpg"
+    },
+    {
+        "cannedSoda":"./assets/canned soda.jpg"
+    },
+    {
+        "cookingOil":"./assets/cooking oil.jpg"
+    },
+    {
+        "juice":"./assets/juice.jpg"
+    },
+    {
+        "rice":"./assets/rice.jpg"
+    },
+    {
+        "spices":"./assets/spices.jpg"
+    },
+    {
+        "tomato":"./assets/tomato.jpg"
+    },
+    {
+        "water":"./assets/water.jpg"
+    },
+    {
+        "flour":"./assets/flour image.jpg"
+    }
   ],
   "accounts": [
     {

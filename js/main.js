@@ -36,6 +36,7 @@ form.addEventListener('submit', (e)=>{
                     homepage.style.opacity = '1';
                     homepage.style.backgroundColor = '#ffffff';
                     accModal.style.display = 'none';
+                    loadAccountData(account, username);
                     form.reset();
                 }else{
                     alertMessage(`Error: Incorrect password please try again`, 'red');
@@ -82,11 +83,11 @@ function alertMessage(message, color){
         alertModal.style.display = 'none';
     }, 3000)
 }
-function handlePreviewData(){
-    // const previewGridCont = document.getElementsByClassName('pantryData');
-    // const data = []
-    // if (data.length === 0){
-    //     previewGridCont[0].style.display = 'block'
-    //     previewGridCont[0].innerHTML = `<a href="https://storyset.com/data">Data illustrations by Storyset</a>`
-    // }
+function loadAccountData(account, username){
+    const navName = document.getElementById('navName');
+    const salutations = document.getElementById('dashUsername');
+    const availableItems = document.getElementById('availableCount');
+    navName.textContent = `${account[username].username}`;
+    salutations.textContent = `${account[username].username}`;
+    availableItems.textContent = `${account[username].pantry_items.length}`;
 }
