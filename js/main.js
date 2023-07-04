@@ -82,3 +82,11 @@ function alertMessage(message, color){
         alertModal.style.display = 'none';
     }, 3000)
 }
+function handlePreviewData(){
+    // const previewGridCont = document.getElementsByClassName('pantryData');
+    // const data = []
+    // if (data.length === 0){
+    //     previewGridCont[0].style.display = 'block'
+    //     previewGridCont[0].innerHTML = `<a href="https://storyset.com/data">Data illustrations by Storyset</a>`
+    // }
+}

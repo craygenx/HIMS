@@ -2,7 +2,7 @@
     --secondary-color: #e9f358;
 }
 body{
-    margin: 0;
+    margin: 0 35px;
     padding: 0;
 }
 .main_wrapper{
@@ -10,7 +10,7 @@ body{
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 95vh;
+    height: 90vh;
 }
 .accountSetupModal{
     position: absolute;
@@ -125,4 +125,123 @@ background-color: whitesmoke;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.sideBar {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mainInterface{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+span {
+    margin: 0 6px;
+}
+.dasboardBtn{
+    width: 150px;
+    text-align: center;
+    background-color: whitesmoke;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+.pageCenter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 5%;
+    margin-top: 20px;
+    width: 50%;
+    height: 100%;
+}
+.quotationCount, .pantryTitle{
+    margin: 20px 0;
+    font-size: 20px;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+}
+.quotationCount{
+    margin-bottom: 50px;
+}
+.pantryTitle{
+    font-size: 18px;
+}
+.dashPantryTabs{
+    height: 45px;
+    width: 80%;
+    background-color: whitesmoke;
+}
+.pantryPreview{
+    margin-top: 20px;
+    margin-left: 40px;
+    height: 50%;
+    width: 90%;
+    background-color: antiquewhite;
+}
+.pantryTabsWrapper{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+}
+.pageRight{
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 25%;
+    margin-left: 20px;
+    height: 100%;
+    background-color: azure;
+}
+.viewPantry{
+    background-color: #F8F9FA;
+}
+.viewPantry, .dateDataCont{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    width: 80%;
+}
+.avlItems{
+    color: #636C6D;
+    font-family: Inter;
+    font-style: italic;
+    line-height: normal;
+}
+.date_day{
+    color: #636C6D;
+    font-family: Inter;
+    font-style: italic;
+    line-height: normal;
+}
+.orderContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    width: 30%;
+    height: 70%;
+    background-color: black;
+    text-align: center;
+    color: white;
+}
+.calender_quotations{
+    width: 80%;
+    height: 60%;
+    background-color: blanchedalmond;
+}
+.pantryData{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+    padding: 10px;
+    white-space: nowrap;
 }
