@@ -247,7 +247,7 @@ span {
     white-space: nowrap;
 }
 .inventoryBoard{
-    display: none;
+    display: flex;
     justify-content: space-between;
     margin-top: 50px;
     position: absolute;
@@ -349,10 +349,10 @@ span {
     overflow: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin-top: 20px;
     width: 100%;
     height: 100%;
-    background-color: bisque;
 }
 #closeInventory{
     position: absolute;
@@ -371,4 +371,25 @@ span {
 .shelfItemDets img{
     width: 100%;
     height: 100%;
+}
+.shelfItemCont{
+    height: 35%;
+    width: 30%;
+    margin: 20px;
+    background-color: #F8F9FA;
+}
+.imageShelfItem{
+    height: 70%;
+    width: 100%;
+    background-color: blanchedalmond;
+}
+.imageShelfItem img{
+    width: 100%;
+    height: 100%;
+}
+.shelfItemDetails{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4%;
 }

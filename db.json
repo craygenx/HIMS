@@ -9,7 +9,7 @@
       "id": "beans"
     },
     {
-      "cannedSoda": "./assets/canned soda.jpg",
+      "cannedSoda": "./assets/cannedsoda.jpg",
       "id": "cannedSoda"
     },
     {
@@ -116,7 +116,7 @@
           "drinks": [
             {
               "cannedSoda": {
-                "imageUrl": "./assets/canned soda.jpg",
+                "imageUrl": "./assets/cannedsoda.jpg",
                 "itemName": "cannedSoda",
                 "itemQuantity": "24",
                 "itemThreshold": "21"

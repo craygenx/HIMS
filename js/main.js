@@ -41,6 +41,7 @@ form.addEventListener('submit', (e)=>{
                     homepage.style.opacity = '1';
                     homepage.style.backgroundColor = '#ffffff';
                     accModal.style.display = 'none';
+                    addShelfItem();
                     loadAccountData(account, username);
                     form.reset();
                 }else{
@@ -164,6 +165,35 @@ function handleThreshold(){
     const percentage = Math.floor(parseInt(itemQuantity)*0.9);
     itemThreshold.placeholder = percentage;
 }
+function unWrap(data){
+    data.forEach(item => {
+        let key = Object.keys(item)[0];
+        let { imageUrl, itemName, itemQuantity, itemThreshold } = item[key];
+        const shelfItemCont = document.createElement('div');
+        const shelvesData = document.getElementById('shelvesData');
+        shelfItemCont.className = 'shelfItemCont';
+        shelfItemCont.innerHTML = `
+            <div class="imageShelfItem">
+                <img src=${imageUrl} alt="">
+            </div>
+            <div class="shelfItemDetails">
+                <div class="nameQty">
+                    <div>${itemName}</div>
+                    <div style="font-style: italic;">${itemQuantity} items</div>
+                </div>
+                <div class="circCont" style="background-color: beige;">${itemThreshold}</div>
+            </div>
+        `;
+        shelvesData.appendChild(shelfItemCont);
+    });
+}
 function addShelfItem(){
-    
+    const cereals = mainAccount['pantry_items']['cereals'];
+    const groceries = mainAccount['pantry_items']['grocery'];
+    const spices = mainAccount['pantry_items']['spices'];
+    const drinks = mainAccount['pantry_items']['drinks'];
+    unWrap(cereals);
+    unWrap(groceries);
+    unWrap(spices);
+    unWrap(drinks);
 }
