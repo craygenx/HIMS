@@ -91,7 +91,9 @@
             <div class="shelves">
                 <div class="topShelf">
                     <div style="font-size: 1.3rem;">My pantry</div>
-                    <select id="dropdown" style="width: fit-content;">
+                    <select name="Filter" class="dropdown">
+                        <option value="cereals">Cereals</option>
+                        <option value="grocery">Grocery</option>
                     </select>
                 </div>
                 <div class="shelvesData"></div>
@@ -100,18 +102,29 @@
                 <div class="circCont" id="closeInventory" onclick="closeInventory()">
                     <i class="fa-solid fa-xmark"></i>
                 </div>
-                <div class="shelfItemImageDets"></div>
+                <div class="shelfItemImageDets">
+                    <img src="" alt="" id="shelfItemImageSide">
+                </div>
                 <div class="invForm">
                     <form action="" id="ineventory">
                         <div class="input-container">
-                            <input type="text" id="itemName" />
+                            <input type="text" id="itemName" onchange="updateImage()"/>
                             <label for="itemName">Item name</label>
                         </div>
                         <div class="input-container">
-                            <input type="text" id="itemQuantity" />
+                            <input type="text" id="itemQuantity" onchange="handleThreshold()"/>
                             <label for="itemQuantity">Item Quantity</label>
                         </div>
                         <div class="thresholdCont">
+                            <div class="selectCont">
+                                <select name="Category" class="dropdown" id="setCategory">
+                                    <option value="cereals">Cereals</option>
+                                    <option value="grocery">Grocery</option>
+                                    <option value="spices">Spices</option>
+                                    <option value="drinks">Drinks</option>
+                                    <option value="cookingOil">Cooking oil</option>
+                                </select>
+                            </div>
                             <div class="threshCountCont">
                                 <div class="addbutton">
                                     <i class="fa-solid fa-plus"></i>

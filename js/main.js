@@ -2,6 +2,7 @@
 const form = document.getElementById('accountForm');
 const inventoryForm = document.getElementById('ineventory');
 let userData;
+let mainAccount;
 
 document.addEventListener('DOMContentLoaded', ()=>{});
 //control the registration form tabs login/signup
@@ -36,6 +37,7 @@ form.addEventListener('submit', (e)=>{
                     const homepage = document.getElementById('homepage');
                     const accModal = document.getElementById('accModal');
                     alertMessage(`Hello ${username}, logIn succeful!`, 'green');
+                    mainAccount = account[username];
                     homepage.style.opacity = '1';
                     homepage.style.backgroundColor = '#ffffff';
                     accModal.style.display = 'none';
@@ -97,15 +99,23 @@ function loadAccountData(account, username){
 }
 inventoryForm.addEventListener('submit', (e)=>{
     e.preventDefault()
-    const itemName = document.getElementById('itemName');
-    const itemQuantity = document.getElementById('itemQuantity');
+    const itemImage = document.getElementById('shelfItemImageSide');
+    const itemName = document.getElementById('itemName').value;
+    const itemQuantity = document.getElementById('itemQuantity').value;
     const itemThreshold = document.getElementById('threshCount').value || document.getElementById('threshCount').placeholder;
+    const category = document.getElementById('setCategory');
+
+    const selectedValue = category.value;
+    console.log(imageUrl)
     const data = {
-        "itemName": itemName,
-        "itemQuantity": itemQuantity,
-        "itemThreshold": itemThreshold
+        [itemName]:{
+            "imageUrl": imageUrl,
+            "itemName": itemName,
+            "itemQuantity": itemQuantity,
+            "itemThreshold": itemThreshold
+            }
     }
-    handleAddItem(data)
+    handleAddItem(data, mainAccount.username, selectedValue)
 
 })
 function openInventoryBoard() {
@@ -115,17 +125,45 @@ function openInventoryBoard() {
     homepage.style.opacity = '1';
     homepage.style.backgroundColor = '#ffffff';
 }
-function handleAddItem(data){
-    fetch('http://localhost:3000/accounts',{
+function handleAddItem(data, username, category){
+    userData[username]["pantry_items"][category].push(data);
+    fetch(`http://localhost:3000/accounts/${2}`, {
         method: 'PATCH',
         headers: {
-            'Content-Type':'application/json',
-            'accept':'application/json'
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(userData)
     })
 }
 function closeInventory(){
     const inventoryBoard = document.getElementById('inventoryBoard');
     inventoryBoard.style.display = 'none';
+}
+function updateImage() {
+    const itemImage = document.getElementById('shelfItemImageSide');
+    const nameValue = document.getElementById('itemName').value
+    fetch(`http://localhost:3000/images`)
+        .then(res => res.json())
+        .then(images => {
+            console.log(nameValue)
+            const account = images.find(obj => obj.hasOwnProperty(nameValue));
+            console.log(account)
+            if(account){
+                itemImage.src = account[nameValue];
+                imageUrl = account[nameValue];
+            }else{
+                const account = images.find(obj => obj.hasOwnProperty('default'));
+                itemImage.src = account["default"],
+                imageUrl = account["default"];
+            }
+        })
+}
+function handleThreshold(){
+    const itemQuantity = document.getElementById('itemQuantity').value;
+    const itemThreshold = document.getElementById('threshCount');
+    const percentage = Math.floor(parseInt(itemQuantity)*0.9);
+    itemThreshold.placeholder = percentage;
+}
+function addShelfItem(){
+    
 }

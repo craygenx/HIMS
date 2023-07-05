@@ -1,34 +1,48 @@
 {
   "images": [
     {
-        "kale":"./assets/kale.jpg"
+      "kale": "./assets/kale.jpg",
+      "id": "Kale"
     },
     {
-        "beans":"./assets/beans.jpg"
+      "beans": "./assets/beans.jpg",
+      "id": "beans"
     },
     {
-        "cannedSoda":"./assets/canned soda.jpg"
+      "cannedSoda": "./assets/canned soda.jpg",
+      "id": "cannedSoda"
     },
     {
-        "cookingOil":"./assets/cooking oil.jpg"
+      "cookingOil": "./assets/cooking oil.jpg",
+      "id": "cookingOil"
     },
     {
-        "juice":"./assets/juice.jpg"
+      "juice": "./assets/juice.jpg",
+      "id": "juice"
     },
     {
-        "rice":"./assets/rice.jpg"
+      "rice": "./assets/rice.jpg",
+      "id": "rice"
     },
     {
-        "spices":"./assets/spices.jpg"
+      "spices": "./assets/spices.jpg",
+      "id": "spices"
     },
     {
-        "tomato":"./assets/tomato.jpg"
+      "tomato": "./assets/tomato.jpg",
+      "id": "tomato"
     },
     {
-        "water":"./assets/water.jpg"
+      "water": "./assets/water.jpg",
+      "id": "water"
     },
     {
-        "flour":"./assets/flour image.jpg"
+      "flour": "./assets/flour image.jpg",
+      "id": "flour"
+    },
+    {
+      "default": "./assets/defaultImg.jpg",
+      "id": "default"
     }
   ],
   "accounts": [
@@ -44,7 +58,89 @@
       "cenchi": {
         "username": "cenchi",
         "password": "1234567890",
-        "pantry_items": []
+        "pantry_items": {
+          "cereals": [
+            {
+              "beans": {
+                "imageUrl": "./assets/beans.jpg",
+                "itemName": "beans",
+                "itemQuantity": "20",
+                "itemThreshold": "18"
+              }
+            },
+            {
+              "rice": {
+                "imageUrl": "./assets/rice.jpg",
+                "itemName": "rice",
+                "itemQuantity": "12",
+                "itemThreshold": "10"
+              }
+            }
+          ],
+          "grocery": [
+            {
+              "kale": {
+                "imageUrl": "./assets/kale.jpg",
+                "itemName": "kale",
+                "itemQuantity": "20",
+                "itemThreshold": "18"
+              }
+            },
+            {
+              "tomato": {
+                "imageUrl": "./assets/tomato.jpg",
+                "itemName": "tomato",
+                "itemQuantity": "50",
+                "itemThreshold": "45"
+              }
+            },
+            {
+              "cabbage": {
+                "imageUrl": "./assets/defaultImg.jpg",
+                "itemName": "cabbage",
+                "itemQuantity": "20",
+                "itemThreshold": "18"
+              }
+            }
+          ],
+          "spices": [
+            {
+              "spices": {
+                "imageUrl": "./assets/spices.jpg",
+                "itemName": "spices",
+                "itemQuantity": "4",
+                "itemThreshold": "3"
+              }
+            }
+          ],
+          "drinks": [
+            {
+              "cannedSoda": {
+                "imageUrl": "./assets/canned soda.jpg",
+                "itemName": "cannedSoda",
+                "itemQuantity": "24",
+                "itemThreshold": "21"
+              }
+            },
+            {
+              "juice": {
+                "imageUrl": "./assets/juice.jpg",
+                "itemName": "juice",
+                "itemQuantity": "30",
+                "itemThreshold": "27"
+              }
+            },
+            {
+              "water": {
+                "imageUrl": "./assets/water.jpg",
+                "itemName": "water",
+                "itemQuantity": "20",
+                "itemThreshold": "18"
+              }
+            }
+          ],
+          "cookingOil": []
+        }
       },
       "id": 2
     },
