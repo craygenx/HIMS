@@ -50,6 +50,7 @@
       "craygenx": {
         "username": "craygenx",
         "password": "1234567890",
+        "quotations": [],
         "pantry_items": []
       },
       "id": 1
@@ -58,14 +59,16 @@
       "cenchi": {
         "username": "cenchi",
         "password": "1234567890",
+        "quotations": [],
         "pantry_items": {
           "cereals": [
             {
               "beans": {
                 "imageUrl": "./assets/beans.jpg",
                 "itemName": "beans",
-                "itemQuantity": "20",
-                "itemThreshold": "18"
+                "itemQuantity": "2",
+                "itemThreshold": "3",
+                "category": "cereals"
               }
             },
             {
@@ -73,7 +76,8 @@
                 "imageUrl": "./assets/rice.jpg",
                 "itemName": "rice",
                 "itemQuantity": "12",
-                "itemThreshold": "10"
+                "itemThreshold": "2",
+                "category": "cereals"
               }
             }
           ],
@@ -83,15 +87,17 @@
                 "imageUrl": "./assets/kale.jpg",
                 "itemName": "kale",
                 "itemQuantity": "20",
-                "itemThreshold": "18"
+                "itemThreshold": "2",
+                "category": "grocery"
               }
             },
             {
               "tomato": {
                 "imageUrl": "./assets/tomato.jpg",
                 "itemName": "tomato",
-                "itemQuantity": "50",
-                "itemThreshold": "45"
+                "itemQuantity": "4",
+                "itemThreshold": "5",
+                "category": "grocery"
               }
             },
             {
@@ -99,7 +105,8 @@
                 "imageUrl": "./assets/defaultImg.jpg",
                 "itemName": "cabbage",
                 "itemQuantity": "20",
-                "itemThreshold": "18"
+                "itemThreshold": "2",
+                "category": "grocery"
               }
             }
           ],
@@ -109,7 +116,8 @@
                 "imageUrl": "./assets/spices.jpg",
                 "itemName": "spices",
                 "itemQuantity": "4",
-                "itemThreshold": "3"
+                "itemThreshold": "1",
+                "category": "spices"
               }
             }
           ],
@@ -119,28 +127,23 @@
                 "imageUrl": "./assets/cannedsoda.jpg",
                 "itemName": "cannedSoda",
                 "itemQuantity": "24",
-                "itemThreshold": "21"
+                "itemThreshold": "3",
+                "category": "drinks"
               }
             },
             {
               "juice": {
                 "imageUrl": "./assets/juice.jpg",
                 "itemName": "juice",
-                "itemQuantity": "30",
-                "itemThreshold": "27"
-              }
-            },
-            {
-              "water": {
-                "imageUrl": "./assets/water.jpg",
-                "itemName": "water",
-                "itemQuantity": "20",
-                "itemThreshold": "18"
+                "itemQuantity": "28",
+                "itemThreshold": "3",
+                "category": "drinks"
               }
             }
           ],
           "cookingOil": []
-        }
+        },
+        "name": "cenchi"
       },
       "id": 2
     },
@@ -148,6 +151,7 @@
       "dennis": {
         "username": "dennis",
         "password": "1234567890",
+        "quotations": [],
         "pantry_items": []
       },
       "id": 3
@@ -155,9 +159,34 @@
   ],
   "shop_yetu": [
     {
-      "product_name": "",
-      "price": "",
-      "id": ""
+      "kale": "20"
+    },
+    {
+      "beans": "120"
+    },
+    {
+      "juice": "320"
+    },
+    {
+      "cannedSoda": "900"
+    },
+    {
+      "cookingOil": "20"
+    },
+    {
+      "rice": "350"
+    },
+    {
+      "spices": "1200"
+    },
+    {
+      "tomato": "60"
+    },
+    {
+      "water": "240"
+    },
+    {
+      "flour": "1800"
     }
   ]
 }

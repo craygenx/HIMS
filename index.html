@@ -21,29 +21,28 @@
                             <div class="navPstn">H.manager</div>
                         </div>
                     </div>
-                    <div><i class="fa-regular fa-bell"></i></div>
                 </div>
             </div>
-            <div class="mainInterface">
+            <div class="mainInterface" id="mainInterface">
                 <div class="sideBar">
                     <div class="dasboardBtn" style="background-color: #D9D9D9;"><span><i class="fa-solid fa-house"></i></span> Dashboard</div>
-                    <div class="dasboardBtn"><span><i class="fa-solid fa-user"></i></span> Account</div>
+                    <div class="dasboardBtn" onclick="displayAccDets()"><span><i class="fa-solid fa-user"></i></span> Account</div>
                 </div>
                 <div class="pageCenter">
                     <div class="salutations">
                         <div>Hello, <span id="dashUsername">Jane</span></div>
                     </div>
                     <div class="quotationCount">
-                        You have <span id="quotationsCount">0</span> quotations <br> today.
+                        You have <span id="quotationsCount">0</span> quotations items <br> today.
                     </div>
                     <div class="pantryTitle">
                         Pantry
                     </div>
                     <div class="pantryTabsWrapper">
-                        <div class="dashPantryTabs"></div>
+                        <div class="dashPantryTabs" id="dashPantryTabs"></div>
                     </div>
                     <div class="pantryPreview">
-                        <div class="pantryData">
+                        <div class="pantryData" id="pantryData">
                         </div>
                     </div>
                 </div>
@@ -59,14 +58,22 @@
                     </div>
                     <div class="dateDataCont">
                         <div class="date_day">
-                            <div class="date">July 4, 2023</div>
-                            <div>TUESDAY</div>
+                            <div class="date" id="date">July 6, 2023</div>
+                            <div id="dayDate">THURSDAY</div>
                         </div>
                         <div class="orderContainer">
                             <div>+ Order</div>
                         </div>
                     </div>
-                    <div class="calender_quotations"></div>
+                    <div class="calender_quotations">
+                        <div class="calendarCont" id="calendarCont">
+                        </div>
+                        <div class="shoppingListWrapper">
+                            <div style="font-style: italic;">My Shopping List</div>
+                            <div class="shoppingList" id="shoppingList"></div>
+                            <button onclick="handleOrders()">+ Order</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,10 +98,10 @@
             <div class="shelves">
                 <div class="topShelf">
                     <div style="font-size: 1.3rem;">My pantry</div>
-                    <select name="Filter" class="dropdown">
+                    <!-- <select name="Filter" class="dropdown">
                         <option value="cereals">Cereals</option>
                         <option value="grocery">Grocery</option>
-                    </select>
+                    </select> -->
                 </div>
                 <div class="shelvesData" id="shelvesData">
                 </div>
@@ -110,11 +117,11 @@
                     <form action="" id="ineventory">
                         <div class="input-container">
                             <input type="text" id="itemName" onchange="updateImage()"/>
-                            <label for="itemName">Item name</label>
+                            <label for="itemName" id="lbl">Item name</label>
                         </div>
                         <div class="input-container">
                             <input type="text" id="itemQuantity" onchange="handleThreshold()"/>
-                            <label for="itemQuantity">Item Quantity</label>
+                            <label for="itemQuantity" id="lbl1">Item Quantity</label>
                         </div>
                         <div class="thresholdCont">
                             <div class="selectCont">
@@ -137,14 +144,19 @@
                             </div>
                         </div>
                         <div class="invButtons">
-                            <button type="submit" class="addItemBtn">+ Add Item</button>
-                            <div class="circCont">
+                            <button type="submit" class="addItemBtn" id="addItemBtn">+ Add Item</button>
+                            <div class="circCont" onclick="handleDelete()">
                                 <i class="fa-solid fa-trash"></i>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="accountsDets" id="accountsDets" style="flex-direction: column; justify-content: center; align-items: center">
+            <input type="text" style="border: none; margin-bottom: 20px; background-color: transparent" id="nameEdit">
+            <input type="password" style="border: none;" id="passEdit">
+            <button onclick="closeEditName(event)" id="editing">Edit</button>
         </div>
         <div class="alertmsg" id="alertmsg"></div>
     </div>

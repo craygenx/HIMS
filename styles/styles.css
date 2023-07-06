@@ -11,6 +11,7 @@ body{
     justify-content: center;
     width: 100%;
     height: 90vh;
+    background-color: bisque;
 }
 .accountSetupModal{
     position: absolute;
@@ -127,7 +128,7 @@ background-color: whitesmoke;
     align-items: center;
 }
 .sideBar {
-    width: 15%;
+    width: 12%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -147,7 +148,7 @@ span {
     text-align: center;
     background-color: whitesmoke;
     margin-bottom: 15px;
-    padding: 15px;
+    padding: 10px;
 }
 .pageCenter{
     display: flex;
@@ -173,17 +174,23 @@ span {
     font-size: 18px;
 }
 .dashPantryTabs{
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     height: 45px;
     width: 80%;
     background-color: whitesmoke;
 }
+.dashPantryTabs :first-child{
+    color: #e9f358;
+}
 .pantryPreview{
     margin-top: 20px;
-    margin-left: 40px;
-    margin-bottom: 20px;
+    margin-right: 40px;
+    margin-bottom: 10px;
     height: 60%;
-    width: 90%;
-    background-color: antiquewhite;
+    width: 100%;
 }
 .pantryTabsWrapper{
     width: 70%;
@@ -201,9 +208,9 @@ span {
     height: 100%;
     background-color: azure;
 }
-.viewPantry{
+/* .viewPantry{
     background-color: #F8F9FA;
-}
+} */
 .viewPantry, .dateDataCont{
     display: flex;
     justify-content: space-between;
@@ -240,14 +247,19 @@ span {
     background-color: blanchedalmond;
 }
 .pantryData{
-    display: grid;
+    height: 100%;
+    overflow-y: auto;
+    max-height: calc(200px * 3);
+    display: flex;
+    flex-wrap: wrap;
+    /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 10px;
     padding: 10px;
-    white-space: nowrap;
+    white-space: nowrap; */
 }
 .inventoryBoard{
-    display: flex;
+    display: none;
     justify-content: space-between;
     margin-top: 50px;
     position: absolute;
@@ -373,9 +385,9 @@ span {
     height: 100%;
 }
 .shelfItemCont{
-    height: 35%;
+    height: 200px;
     width: 30%;
-    margin: 20px;
+    margin: 10px;
     background-color: #F8F9FA;
 }
 .imageShelfItem{
@@ -393,3 +405,50 @@ span {
     align-items: center;
     margin-top: 4%;
 }
+.calendarCont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45%;
+    width: 100%;
+    background-color: aqua;
+}
+.shoppingList{
+    width: 100%;
+    height: 100%;
+    background-color: aquamarine;
+}
+.listItem{
+    display: flex;
+    justify-content: space-between;
+}
+.shoppingListWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    width: 100%;
+    height: 55%;
+}
+.accountsDets{
+    display: none;
+    right: 0;
+    top: 55px;
+    height: 30%;
+    width: 15%;
+    position: absolute;
+    background-color: lightblue;
+    border-radius: 20px;
+    /* clip-path: polygon(0 23%, 50% 0, 100% 23%, 100% 100%, 0 100%, 0 49%); */
+}
+.current-date {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e9f358;
+    font-weight: bold;
+}
+

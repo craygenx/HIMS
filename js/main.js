@@ -77,7 +77,7 @@ form.addEventListener('submit', (e)=>{
         .then(() => {
             alertMessage(`user ${username} added succesfully!`, 'green');
             homepage.style.opacity = '1';
-            homepage.style.backgroundColor = '#ffffff';
+            homepage.style.backgroundColor = 'bisque';
             accModal.style.display = 'none';
         })
         .catch(err => alertMessage(`Error ${err}: ${err.message}`, 'red'));
@@ -168,7 +168,7 @@ function updateImage() {
 function handleThreshold(){
     const itemQuantity = document.getElementById('itemQuantity').value;
     const itemThreshold = document.getElementById('threshCount');
-    const percentage = Math.floor(parseInt(itemQuantity)*0.9);
+    const percentage = Math.floor(parseInt(itemQuantity)*0.1);
     itemThreshold.placeholder = percentage;
 }
 function unWrap(data, divId){
@@ -208,6 +208,7 @@ function addShelfItem(){
 }
 function displayShelfItem(e) {
     const image =document.getElementById('shelfItemImageSide')
+    const form = document.getElementById('ineventory');
     const itemName =document.getElementById('itemName')
     const itemqty =document.getElementById('itemQuantity')
     const category =document.getElementById('setCategory')
@@ -233,8 +234,8 @@ function displayShelfItem(e) {
     addBtn.textContent = 'Edit'
     handleThreshholdNotification();
     addBtn.removeAttribute('type');
-    itemqty.removeAttribute('change');
-    itemqty.setAttribute('change', 'handleThreshholdNotification()');
+    itemqty.removeAttribute('onchange');
+    itemqty.setAttribute('onchange', 'handleThreshholdNotification()');
     addBtn.setAttribute('onclick', 'editItem()')
 }
 function handleMainTab(){
@@ -258,6 +259,7 @@ function displayItemsOnMain(tab) {
 }
 //edit item
 function editItem(){
+    const form = document.getElementById('ineventory')
     const image =document.getElementById('shelfItemImageSide');
     const itemName =document.getElementById('itemName').value || document.getElementById('itemName').placeholder
     const itemqty =document.getElementById('itemQuantity').value || document.getElementById('itemQuantity').placeholder
@@ -276,6 +278,9 @@ function editItem(){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(userData)
+    }).then(()=>{
+        form.reset();
+        alertMessage(`${itemName} updated succesfully`, 'green');
     });
     input.removeAttribute('change');
     addBtn.setAttribute('type', 'submit');
@@ -289,14 +294,15 @@ function mainTab(e) {
 }
 function handleThreshholdNotification(){
     const thresh =document.getElementById('threshCount').placeholder
-    const itemqty =document.getElementById('itemQuantity').placeholder
+    const itemqty2 =document.getElementById('itemQuantity')
     const itemName =document.getElementById('itemName').value || document.getElementById('itemName').placeholder
-    
-    if(itemqty>=thresh){
-        userData[mainAccount.username]["quotations"].push(itemName);
-        console.log('mainAccount.quotations.includes(itemName)')
-        if(!mainAccount.quotations.includes(itemName)){
-            fetch(`http://localhost:3000/accounts/${2}`, {
+    const change = parseInt(itemqty2.value)
+    console.log(userData.id)
+
+    if(change<=thresh){
+        if(mainAccount.quotations.includes(itemName) === false){
+            userData[mainAccount.username]["quotations"].push(itemName);
+            fetch(`http://localhost:3000/accounts/${userData.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -328,18 +334,18 @@ function createCalendar() {
     for (let week = 0; week < 6; week++) {
         calendarHTML += '<tr>';
         for (let day = 0; day < 7; day++) {
-        if ((week === 0 && day < firstDay.getDay()) || dateCount > lastDay) {
-            calendarHTML += '<td></td>'; // Empty cell before the first day and after the last day
-        } else {
-            const isCurrentDate = dateCount === currentDate.getDate() && currentMonth === currentDate.getMonth() && currentYear === currentDate.getFullYear();
-            calendarHTML += `<td class="${isCurrentDate ? 'current-date' : ''}">${dateCount}</td>`;
-            dateCount++;
-        }
+            if ((week === 0 && day < firstDay.getDay()) || dateCount > lastDay) {
+                calendarHTML += '<td></td>'; // Empty cell before the first day and after the last day
+            } else {
+                const isCurrentDate = dateCount === currentDate.getDate() && currentMonth === currentDate.getMonth() && currentYear === currentDate.getFullYear();
+                calendarHTML += `<td class="${isCurrentDate ? 'current-date' : ''}">${dateCount}</td>`;
+                dateCount++;
+            }
         }
         calendarHTML += '</tr>';
 
         if (dateCount > lastDay) {
-        break; // Stop creating rows if all days have been added
+            break; // Stop creating rows if all days have been added
         }
     }
 
@@ -408,7 +414,8 @@ function displayAccDets(){
         clicked = false;
     }
 }
-function closeEditName(){
+function closeEditName(e){
+    e.preventDefault()
     const name = document.getElementById('nameEdit');
     const pass = document.getElementById('passEdit');
     const cont = document.getElementById('accountsDets');
@@ -425,9 +432,11 @@ function closeEditName(){
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(userData)
-})
+});
+
 }
 function handleDelete(){
+    const form = document.getElementById('ineventory')
     const itemName =document.getElementById('itemName').value || document.getElementById('itemName').placeholder
     const itemqty =document.getElementById('itemQuantity').value || document.getElementById('itemQuantity').placeholder
     const category =document.getElementById('setCategory').value
@@ -442,6 +451,9 @@ function handleDelete(){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(userData)
+    }).then(()=>{
+        form.reset();
+        alertMessage(`${itemName} deleted succesfully!`);
     });
 }
 function displayDate(){
@@ -462,4 +474,29 @@ function displayDate(){
     dayDate.textContent = formatttedData;
 }
 displayDate();
+function handleOrders(){
+    const shoppingList = document.getElementById('shoppingList');
+    userData[mainAccount.username]['quotations'] = [];
+    const random = generateRandomString(6);
+    fetch(`http://localhost:3000/accounts/${userData.id}`, {
+    method: 'PATCH',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(userData)
+}).then(()=>{
+    alertMessage(`order ${random} has been sent out`, 'green')
+});
+}
+function generateRandomString(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result;
+}
 
