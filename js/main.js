@@ -42,11 +42,11 @@ form.addEventListener('submit', (e)=>{
                     homepage.style.opacity = '1';
                     homepage.style.backgroundColor = '#ffffff';
                     accModal.style.display = 'none';
-                    handleMainTab();
-                    addShelfItem();
+                    // handleMainTab();
+                    // addShelfItem();
                     loadAccountData(account, username);
-                    createShoppingList();
-                    availablePantryItems();
+                    // createShoppingList();
+                    // availablePantryItems();
                     form.reset();
                 }else{
                     alertMessage(`Error: Incorrect password please try again`, 'red');
@@ -77,8 +77,14 @@ form.addEventListener('submit', (e)=>{
         .then(() => {
             alertMessage(`user ${username} added succesfully!`, 'green');
             homepage.style.opacity = '1';
-            homepage.style.backgroundColor = 'bisque';
+            homepage.style.backgroundColor = '#ffffff';
             accModal.style.display = 'none';
+            handleMainTab();
+            addShelfItem();
+            loadAccountData(account, username);
+            createShoppingList();
+            availablePantryItems();
+            form.reset();
         })
         .catch(err => alertMessage(`Error ${err}: ${err.message}`, 'red'));
     }
@@ -120,7 +126,7 @@ inventoryForm.addEventListener('submit', (e)=>{
             "category": category.value
             }
     }
-    handleAddItem(data, mainAccount.username, selectedValue)
+    handleAddItem(data, mainAccount.username, category.value)
 
 })
 function openInventoryBoard() {
@@ -131,14 +137,25 @@ function openInventoryBoard() {
     homepage.style.backgroundColor = '#ffffff';
 }
 function handleAddItem(data, username, category){
-    userData[username]["pantry_items"][category].push(data);
-    fetch(`http://localhost:3000/accounts/${2}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    })
+    if(userData[username]["pantry_items"][category]){
+        userData[username]["pantry_items"][category].push(data);
+        fetch(`http://localhost:3000/accounts/${userData.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        });
+    }else{
+        userData[username]["pantry_items"][`${category}`] = [data]
+        fetch(`http://localhost:3000/accounts/${userData.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        });
+    }
 }
 function closeInventory(){
     const inventoryBoard = document.getElementById('inventoryBoard');
@@ -172,29 +189,34 @@ function handleThreshold(){
     itemThreshold.placeholder = percentage;
 }
 function unWrap(data, divId){
-    data.forEach(item => {
-        let key = Object.keys(item)[0];
-        let { imageUrl, itemName, itemQuantity, itemThreshold, category } = item[key];
-        const shelfItemCont = document.createElement('div');
-        const shelvesData = document.getElementById(divId);
-        shelfItemCont.className = 'shelfItemCont';
-        shelfItemCont.id = 'shelfItemCont'
-        // shelfItemCont.setAttribute('onclick', 'displayShelfItem(event)')
-        shelfItemCont.innerHTML = `
-            <div class="imageShelfItem" onclick='displayShelfItem(event)'>
-                <img src=${imageUrl} alt="">
-            </div>
-            <div class="shelfItemDetails">
-                <div class="nameQty">
-                    <div>${itemName}</div>
-                    <div style="font-style: italic;">${itemQuantity} items</div>
-                    <div style='none'>${category}</div>
+        data.forEach(item => {
+            let key = Object.keys(item)[0];
+            let { imageUrl, itemName, itemQuantity, itemThreshold, category } = item[key];
+            const shelfItemCont = document.createElement('div');
+            const shelvesData = document.getElementById(divId);
+            shelfItemCont.className = 'shelfItemCont';
+            shelfItemCont.id = 'shelfItemCont'
+            shelfItemCont.innerHTML = `
+                <div class="imageShelfItem" onclick='displayShelfItem(event)'>
+                    <img src=${imageUrl} alt="">
                 </div>
-                <div class="circCont" style="background-color: beige;">${itemThreshold}</div>
-            </div>
-        `;
-        shelvesData.appendChild(shelfItemCont);
-    });
+                <div class="shelfItemDetails">
+                    <div class="nameQty">
+                        <div>${itemName}</div>
+                        <div style="font-style: italic;">${itemQuantity} items</div>
+                        <div style='none'>${category}</div>
+                    </div>
+                    <div class="circCont" style="background-color: beige;">${itemThreshold}</div>
+                </div>
+            `;
+            shelvesData.appendChild(shelfItemCont);
+        });
+    // }else{
+    //     const shelvesData = document.getElementById(divId);
+    //     shelvesData.innerHTML=`<img src="./assets/noData.avif" alt="no Data" style="width: 30%; height: 100%">`;
+    //     shelvesData.style.display = 'flex';
+    //     shelvesData.style.justifyContent = 'center'
+    // }
 }
 function addShelfItem(){
     const cereals = mainAccount['pantry_items']['cereals'];
@@ -241,7 +263,7 @@ function displayShelfItem(e) {
 function handleMainTab(){
     const dashPantryTabs = document.getElementById('dashPantryTabs');
     const tabs = Object.keys(mainAccount['pantry_items']);
-    tabs.forEach(tab => {
+    tabs.forEach((tab, index) => {
         const div = document.createElement('div');
         div.setAttribute('onclick', 'mainTab(event)');
         div.id = tab;
@@ -249,6 +271,9 @@ function handleMainTab(){
             ${tab}
         `;
         dashPantryTabs.appendChild(div);
+        if(index === 0){
+            div.className = 'current'
+        }
     });
 
     displayItemsOnMain(tabs[0])
@@ -287,6 +312,9 @@ function editItem(){
     input.setAttribute('change', 'handleThreshold()');
 }
 function mainTab(e) {
+    const current = document.getElementsByClassName('current')[0]
+    current.removeAttribute('class')
+    e.target.className = 'current';
     const id = e.target.id;
     const shelvesData = document.getElementById('pantryData');
     shelvesData.innerHTML = ``;
@@ -357,20 +385,25 @@ function createShoppingList(){
     fetch('http://localhost:3000/shop_yetu')
     .then(res => res.json())
     .then(data => {
-        mainAccount.quotations.forEach(item => {
-            const product = data.find(key => key.hasOwnProperty(item));
-            if(product){
-                const shoppingList = document.getElementById('shoppingList');
-                const listItem = document.createElement('div');
-                listItem.className = 'listItem';
-                listItem.innerHTML=`
-                        <div>${item}</div>
-                        <div id="price">${product[item]}</div>
-                        <input type="text" placeholder="1" onchange='shoppingItemMultiplier(event)' style="width: 50px; border: none; background-color: transparent;">
-                `;
-                shoppingList.appendChild(listItem);
-            }
-        })
+        //if(mainAccount.quotations.length > 0){
+            mainAccount.quotations.forEach(item => {
+                const product = data.find(key => key.hasOwnProperty(item));
+                if(product){
+                    const shoppingList = document.getElementById('shoppingList');
+                    const listItem = document.createElement('div');
+                    listItem.className = 'listItem';
+                    listItem.innerHTML=`
+                            <div>${item}</div>
+                            <div id="price">${product[item]}</div>
+                            <input type="text" placeholder="1" onchange='shoppingItemMultiplier(event)' style="width: 50px; border: none; background-color: transparent;">
+                    `;
+                    shoppingList.appendChild(listItem);
+                }
+            })
+        // }else{
+        //     const shoppingList = document.getElementById('shoppingList');
+        //     shoppingList.innerHTML =`<img src="./assets/noData.avif" alt="no Data" style="width: 100%; height: 100%">`
+        // }
     })
 }
 function shoppingItemMultiplier(e){

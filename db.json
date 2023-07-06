@@ -51,7 +51,7 @@
         "username": "craygenx",
         "password": "1234567890",
         "quotations": [],
-        "pantry_items": []
+        "pantry_items": {}
       },
       "id": 1
     },
@@ -77,6 +77,15 @@
                 "itemName": "rice",
                 "itemQuantity": "12",
                 "itemThreshold": "2",
+                "category": "cereals"
+              }
+            },
+            {
+              "maize": {
+                "imageUrl": "./assets/defaultImg.jpg",
+                "itemName": "maize",
+                "itemQuantity": "30",
+                "itemThreshold": "3",
                 "category": "cereals"
               }
             }
@@ -155,6 +164,55 @@
         "pantry_items": []
       },
       "id": 3
+    },
+    {
+      "grace": {
+        "username": "grace",
+        "password": "1234567890",
+        "quotations": [],
+        "pantry_items": {
+          "cereals": [
+            {
+              "maize": {
+                "imageUrl": "./assets/defaultImg.jpg",
+                "itemName": "maize",
+                "itemQuantity": "30",
+                "itemThreshold": "3",
+                "category": "cereals"
+              }
+            },
+            {
+              "sugar": {
+                "imageUrl": "./assets/defaultImg.jpg",
+                "itemName": "sugar",
+                "itemQuantity": "12",
+                "itemThreshold": "1",
+                "category": "cereals"
+              }
+            }
+          ],
+          "grocery": [
+            {
+              "kale": {
+                "imageUrl": "./assets/kale.jpg",
+                "itemName": "kale",
+                "itemQuantity": "30",
+                "itemThreshold": "3",
+                "category": "grocery"
+              }
+            }
+          ]
+        }
+      },
+      "id": 4
+    },
+    {
+      "john": {
+        "username": "john",
+        "password": "1234567890",
+        "pantry_items": {}
+      },
+      "id": 5
     }
   ],
   "shop_yetu": [

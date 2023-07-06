@@ -4,6 +4,9 @@
 body{
     margin: 0 35px;
     padding: 0;
+    background-image: url(assets/backimg.avif);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .main_wrapper{
     position: relative;
@@ -182,9 +185,15 @@ span {
     width: 80%;
     background-color: whitesmoke;
 }
-.dashPantryTabs :first-child{
+.dashPantryTabs *{
+    cursor: pointer;
+}
+.current{
     color: #e9f358;
 }
+/* .dashPantryTabs :first-child{
+    color: #e9f358;
+} */
 .pantryPreview{
     margin-top: 20px;
     margin-right: 40px;
@@ -243,7 +252,7 @@ span {
 }
 .calender_quotations{
     width: 80%;
-    height: 60%;
+    height: 70%;
     background-color: blanchedalmond;
 }
 .pantryData{
@@ -450,5 +459,52 @@ span {
     align-items: center;
     background-color: #e9f358;
     font-weight: bold;
+}
+/* Styles for iPad screens */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+  /* CSS rules specific to iPad screens go here */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .sideBar{
+    display: none;
+  }
+  .inventoryBoard{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .pantryTabsWrapper{
+    overflow-x: auto;
+  }
+  .viewPantry{
+    display: none;
+  }
+  .dateDataCont{
+    display: none;
+  }
+  .mainInterface{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .pageCenter{
+    width: 100%;
+  }
+  .pageRight{
+    height: 50%;
+    width: 50%;
+  }
+  .accountSetupModal{
+    width: 60%;
+  }
 }
 
