@@ -75,7 +75,7 @@
               "rice": {
                 "imageUrl": "./assets/rice.jpg",
                 "itemName": "rice",
-                "itemQuantity": "12",
+                "itemQuantity": "10",
                 "itemThreshold": "2",
                 "category": "cereals"
               }
@@ -148,13 +148,53 @@
                 "itemThreshold": "3",
                 "category": "drinks"
               }
+            },
+            {
+              "water": {
+                "imageUrl": "./assets/water.jpg",
+                "itemName": "water",
+                "itemQuantity": "20",
+                "itemThreshold": "2",
+                "category": "drinks"
+              }
             }
           ],
           "cookingOil": []
         },
         "name": "cenchi"
       },
-      "id": 2
+      "id": 2,
+      "grace": {
+        "username": "grace",
+        "password": "1234567890",
+        "quotations": [
+          "kale"
+        ],
+        "pantry_items": {
+          "cereals": [
+            {
+              "sugar": {
+                "imageUrl": "./assets/defaultImg.jpg",
+                "itemName": "sugar",
+                "itemQuantity": "10",
+                "itemThreshold": "1",
+                "category": "cereals"
+              }
+            }
+          ],
+          "grocery": [
+            {
+              "kale": {
+                "imageUrl": "./assets/kale.jpg",
+                "itemName": "kale",
+                "itemQuantity": "30",
+                "itemThreshold": "3",
+                "category": "grocery"
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "dennis": {
@@ -207,12 +247,56 @@
       "id": 4
     },
     {
-      "john": {
-        "username": "john",
+      "johnte": {
+        "username": "johnte",
         "password": "1234567890",
-        "pantry_items": {}
+        "quotations": [],
+        "pantry_items": {
+          "grocery": [
+            {
+              "kale": {
+                "imageUrl": "./assets/kale.jpg",
+                "itemName": "kale",
+                "itemQuantity": "30",
+                "itemThreshold": "3",
+                "category": "grocery"
+              }
+            }
+          ],
+          "cereals": [
+            {
+              "maize": {
+                "imageUrl": "./assets/defaultImg.jpg",
+                "itemName": "maize",
+                "itemQuantity": "20",
+                "itemThreshold": "2",
+                "category": "cereals"
+              }
+            }
+          ],
+          "drinks": [
+            {
+              "water": {
+                "imageUrl": "./assets/water.jpg",
+                "itemName": "water",
+                "itemQuantity": "12",
+                "itemThreshold": "1",
+                "category": "drinks"
+              }
+            }
+          ]
+        }
       },
       "id": 5
+    },
+    {
+      "karen": {
+        "username": "karen",
+        "password": "1234567890",
+        "quotations": [],
+        "pantry_items": {}
+      },
+      "id": 6
     }
   ],
   "shop_yetu": [

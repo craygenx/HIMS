@@ -42,11 +42,11 @@ form.addEventListener('submit', (e)=>{
                     homepage.style.opacity = '1';
                     homepage.style.backgroundColor = '#ffffff';
                     accModal.style.display = 'none';
-                    // handleMainTab();
-                    // addShelfItem();
+                    handleMainTab();
+                    addShelfItem();
                     loadAccountData(account, username);
-                    // createShoppingList();
-                    // availablePantryItems();
+                    createShoppingList();
+                    availablePantryItems();
                     form.reset();
                 }else{
                     alertMessage(`Error: Incorrect password please try again`, 'red');
@@ -63,7 +63,8 @@ form.addEventListener('submit', (e)=>{
             [username] : {
                 username: username,
                 password: password,
-                pantry_items : []
+                quotations: [],
+                pantry_items : {}
             }
         }
         fetch('http://localhost:3000/accounts',{
@@ -189,6 +190,7 @@ function handleThreshold(){
     itemThreshold.placeholder = percentage;
 }
 function unWrap(data, divId){
+    if(data){
         data.forEach(item => {
             let key = Object.keys(item)[0];
             let { imageUrl, itemName, itemQuantity, itemThreshold, category } = item[key];
@@ -211,22 +213,33 @@ function unWrap(data, divId){
             `;
             shelvesData.appendChild(shelfItemCont);
         });
-    // }else{
-    //     const shelvesData = document.getElementById(divId);
-    //     shelvesData.innerHTML=`<img src="./assets/noData.avif" alt="no Data" style="width: 30%; height: 100%">`;
-    //     shelvesData.style.display = 'flex';
-    //     shelvesData.style.justifyContent = 'center'
-    // }
+    }else{
+        const shelvesData = document.getElementById(divId);
+        shelvesData.innerHTML=`<img src="./assets/noData.avif" alt="no Data" style="width: 30%; height: 100%">`;
+        shelvesData.style.display = 'flex';
+        shelvesData.style.justifyContent = 'center'
+    }
 }
 function addShelfItem(){
-    const cereals = mainAccount['pantry_items']['cereals'];
-    const groceries = mainAccount['pantry_items']['grocery'];
-    const spices = mainAccount['pantry_items']['spices'];
-    const drinks = mainAccount['pantry_items']['drinks'];
-    unWrap(cereals, 'shelvesData');
-    unWrap(groceries, 'shelvesData');
-    unWrap(spices, 'shelvesData');
-    unWrap(drinks, 'shelvesData');
+    // if(mainAccount['pantry_items']['cereals']){
+    //     const cereals = mainAccount['pantry_items']['cereals'];
+    //     const groceries = mainAccount['pantry_items']['grocery'];
+    //     const spices = mainAccount['pantry_items']['spices'];
+    //     const drinks = mainAccount['pantry_items']['drinks'];
+    //     unWrap(cereals, 'shelvesData');
+    //     unWrap(groceries, 'shelvesData');
+    //     unWrap(spices, 'shelvesData');
+    //     unWrap(drinks, 'shelvesData');
+    // }
+    if(Object.keys(mainAccount['pantry_items']).length !== 0){
+        const tabs = Object.keys(mainAccount['pantry_items']);
+        tabs.forEach((tab) => {
+            const data = mainAccount['pantry_items'][tab];
+            unWrap(data, 'shelvesData');
+        });
+
+        displayItemsOnMain(tabs[0])
+    }
 }
 function displayShelfItem(e) {
     const image =document.getElementById('shelfItemImageSide')
@@ -262,21 +275,23 @@ function displayShelfItem(e) {
 }
 function handleMainTab(){
     const dashPantryTabs = document.getElementById('dashPantryTabs');
-    const tabs = Object.keys(mainAccount['pantry_items']);
-    tabs.forEach((tab, index) => {
-        const div = document.createElement('div');
-        div.setAttribute('onclick', 'mainTab(event)');
-        div.id = tab;
-        div.innerHTML = `
-            ${tab}
-        `;
-        dashPantryTabs.appendChild(div);
-        if(index === 0){
-            div.className = 'current'
-        }
-    });
+    if(Object.keys(mainAccount['pantry_items']).length !== 0){
+        const tabs = Object.keys(mainAccount['pantry_items']);
+        tabs.forEach((tab, index) => {
+            const div = document.createElement('div');
+            div.setAttribute('onclick', 'mainTab(event)');
+            div.id = tab;
+            div.innerHTML = `
+                ${tab}
+            `;
+            dashPantryTabs.appendChild(div);
+            if(index === 0){
+                div.className = 'current'
+            }
+        });
 
-    displayItemsOnMain(tabs[0])
+        displayItemsOnMain(tabs[0])
+    }
 }
 function displayItemsOnMain(tab) {
     const tabTitle = mainAccount['pantry_items'][`${tab}`];
@@ -325,7 +340,6 @@ function handleThreshholdNotification(){
     const itemqty2 =document.getElementById('itemQuantity')
     const itemName =document.getElementById('itemName').value || document.getElementById('itemName').placeholder
     const change = parseInt(itemqty2.value)
-    console.log(userData.id)
 
     if(change<=thresh){
         if(mainAccount.quotations.includes(itemName) === false){
@@ -385,7 +399,7 @@ function createShoppingList(){
     fetch('http://localhost:3000/shop_yetu')
     .then(res => res.json())
     .then(data => {
-        //if(mainAccount.quotations.length > 0){
+        if(mainAccount.quotations.length > 0){
             mainAccount.quotations.forEach(item => {
                 const product = data.find(key => key.hasOwnProperty(item));
                 if(product){
@@ -399,11 +413,11 @@ function createShoppingList(){
                     `;
                     shoppingList.appendChild(listItem);
                 }
-            })
-        // }else{
-        //     const shoppingList = document.getElementById('shoppingList');
-        //     shoppingList.innerHTML =`<img src="./assets/noData.avif" alt="no Data" style="width: 100%; height: 100%">`
-        // }
+            });
+        }else{
+            const shoppingList = document.getElementById('shoppingList');
+            shoppingList.innerHTML =`<img src="./assets/noData.avif" alt="no Data" style="width: 100%; height: 100%">`
+        }
     })
 }
 function shoppingItemMultiplier(e){
