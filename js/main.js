@@ -186,7 +186,7 @@ function updateImage() {
 function handleThreshold(){
     const itemQuantity = document.getElementById('itemQuantity').value;
     const itemThreshold = document.getElementById('threshCount');
-    const percentage = Math.floor(parseInt(itemQuantity)*0.1);
+    const percentage = Math.floor(parseInt(itemQuantity)*0.5);
     itemThreshold.placeholder = percentage;
 }
 function unWrap(data, divId){
@@ -213,12 +213,12 @@ function unWrap(data, divId){
             `;
             shelvesData.appendChild(shelfItemCont);
         });
-    }else{
-        const shelvesData = document.getElementById(divId);
-        shelvesData.innerHTML=`<img src="./assets/noData.avif" alt="no Data" style="width: 30%; height: 100%">`;
-        shelvesData.style.display = 'flex';
-        shelvesData.style.justifyContent = 'center'
-    }
+    }//else{
+    //     const shelvesData = document.getElementById(divId);
+    //     shelvesData.innerHTML=`<img src="./assets/noData.avif" alt="no Data" style="width: 30%; height: 100%">`;
+    //     shelvesData.style.display = 'flex';
+    //     shelvesData.style.justifyContent = 'center'
+    // }
 }
 function addShelfItem(){
     // if(mainAccount['pantry_items']['cereals']){
@@ -266,7 +266,7 @@ function displayShelfItem(e) {
     itemName.placeholder = nameQtyElements[0].textContent;
     itemqty.placeholder = nameQtyElements[1].textContent;
     thresh.placeholder = threshcount.textContent;
-    addBtn.textContent = 'Edit'
+    addBtn.textContent = 'Update'
     handleThreshholdNotification();
     addBtn.removeAttribute('type');
     itemqty.removeAttribute('onchange');
