@@ -6,10 +6,10 @@ HIMS (Household inventory management sysytem) is an easy to use application prov
 
 ## installation
 
-1.Clone the repository to your local machine using the following command:
+1. Clone the repository to your local machine using the following command:
 git clone [repository URL]
 
-2.Navigate to the project directory:
+2. Navigate to the project directory:
 cd project-directory
 
 ## prequisites
@@ -24,10 +24,10 @@ install:
 
 ## usage
 
-1.Make sure you have completed the installation steps mentioned above.
-2.run db json:
+1. Make sure you have completed the installation steps mentioned above.
+2. run db json:
 json-server --watch db.json
-3.start live server.
+3. start live server.
 
 ### AUTHORS
 
