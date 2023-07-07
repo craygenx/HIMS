@@ -4,7 +4,6 @@
 body{
     margin: 0 35px;
     padding: 0;
-    background-image: url(assets/backimg.avif);
     background-repeat: no-repeat;
     background-size: cover;
 }
